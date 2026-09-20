@@ -1,0 +1,12 @@
+{
+  "project": "Stellary: C++20 / Win32 / Direct2D desktop wallpaper, single exe, sold on Steam (Software category), v1.0 first release.",
+  "guide": "CLAUDE.md",
+  "accepted": "no automated tests, unsigned exe, idle ~33% of one core, no Steamworks SDK (stubs), settings file written non-atomically, style",
+  "lenses": [
+    { "key": "input-state", "prompt": "main.cpp input & UI state machine (WndProc mouse/keyboard, modal layers: tutorial, confirm, asset panel, settings panel, layout editor; drag targets; toggle animation; hover; search focus; tray)." },
+    { "key": "steam-data", "prompt": "steam_data.cpp parsers (text/binary VDF, specials HTML, XML, JSON), caches + TTL, WinHTTP, BuildStarSet, name resolution, sale cap; search.cpp." },
+    { "key": "gfx", "prompt": "gfx_device.cpp, desktop_mode.cpp, sky_render.cpp, Render/Step/WM_PAINT/WM_SIZE/WM_DISPLAYCHANGE/WM_DPICHANGED in main.cpp, device-loss handlers, launcher window lifetime, transitions." },
+    { "key": "files", "prompt": "workshop_assets.cpp, settings_io.cpp, extension_content.cpp, crash_dump.cpp, util.cpp, CMakeLists.txt POST_BUILD vs runtime expectations; COM release balance." },
+    { "key": "threads", "prompt": "concurrency: sky worker, genre worker, shutdown/join, posted heap payloads, g_app access from workers, WinHTTP handle lifetime, frame timer vs modal loops, single-instance handoff." }
+  ]
+}
