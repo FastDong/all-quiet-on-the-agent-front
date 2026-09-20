@@ -1,4 +1,8 @@
-# code-audit — a repeatable multi-agent release audit for Claude Code
+# All Quiet on the Agent Front (에이전트 이상없음)
+
+A repeatable, cost-controlled multi-agent release audit for Claude Code. The name is a nod to
+*All Quiet on the Western Front*: the skill exists so that "the agents report nothing" is a
+meaningful statement — every claim has been fought over by a refuter before it reaches you.
 
 A Claude Code **skill + saved workflow** that turns "have a bunch of agents review my code"
 into a fixed, comparable, cost-controlled procedure:
@@ -19,8 +23,8 @@ cheaper than ad-hoc agent fan-outs.
 ## Install
 
 ```
-cp -r skills/code-audit   ~/.claude/skills/code-audit
-cp    workflows/code-audit.js ~/.claude/workflows/code-audit.js
+cp -r skills/all-quiet-on-the-agent-front   ~/.claude/skills/all-quiet-on-the-agent-front
+cp    workflows/all-quiet-on-the-agent-front.js ~/.claude/workflows/all-quiet-on-the-agent-front.js
 ```
 
 Claude Code picks up `~/.claude/skills/*/SKILL.md` at session start. The workflow is launched
@@ -41,7 +45,7 @@ Claude then:
 2. Writes one line per lens describing what changed since the last audit (`fixes`).
 3. Launches:
    ```js
-   Workflow({ scriptPath: '~/.claude/workflows/code-audit.js', args: {
+   Workflow({ scriptPath: '~/.claude/workflows/all-quiet-on-the-agent-front.js', args: {
      root: '/abs/path/to/repo',
      project: 'one paragraph: stack, what ships, release target',
      guide: 'CLAUDE.md',              // read first, or ''
@@ -53,7 +57,7 @@ Claude then:
      maxClaims: 4, effort: 'medium'
    } })
    ```
-4. Summarizes with `python ~/.claude/skills/code-audit/summarize.py <task .output file>`.
+4. Summarizes with `python ~/.claude/skills/all-quiet-on-the-agent-front/summarize.py <task .output file>`.
 
 Output shape:
 
@@ -141,9 +145,9 @@ skill just makes those the default so nobody has to remember.
 
 ## Files
 
-- `skills/code-audit/SKILL.md` — the skill (when to run, cost, steps, report format)
-- `skills/code-audit/summarize.py` — prints scores, wrong fixes, confirmed, rejected, minors
-- `workflows/code-audit.js` — the Workflow script (pipeline: audit → refute per claim)
+- `skills/all-quiet-on-the-agent-front/SKILL.md` — the skill (when to run, cost, steps, report format)
+- `skills/all-quiet-on-the-agent-front/summarize.py` — prints scores, wrong fixes, confirmed, rejected, minors
+- `workflows/all-quiet-on-the-agent-front.js` — the Workflow script (pipeline: audit → refute per claim)
 - `examples/stellary-lenses.json` — a real lens file for a Win32/Direct2D C++ app
 
 ## License

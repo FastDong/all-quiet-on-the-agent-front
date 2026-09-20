@@ -1,5 +1,5 @@
 export const meta = {
-  name: 'code-audit',
+  name: 'all-quiet-on-the-agent-front',
   description: 'Project-agnostic release audit: N read-only code lenses verify recent fixes, hunt defects, and each blocker/major is adversarially refuted',
   phases: [{ title: 'Audit', detail: 'one agent per lens' }, { title: 'Verify', detail: 'one refuter per claim' }],
 }
@@ -15,7 +15,7 @@ const since = args.since || 'HEAD~1'
 const scope = args.scope || 'full'
 const maxClaims = args.maxClaims || 4
 const effort = args.effort || 'medium'
-if (!lenses.length) throw new Error('code-audit: args.lenses is required')
+if (!lenses.length) throw new Error('all-quiet-on-the-agent-front: args.lenses is required')
 const ISSUE = { type: 'object', properties: { title: { type: 'string' }, file_line: { type: 'string' }, evidence: { type: 'string' }, failing_input: { type: 'string' }, fix: { type: 'string' } }, required: ['title', 'file_line', 'evidence', 'failing_input', 'fix'] }
 const SCHEMA = { type: 'object', properties: {
   score: { type: 'number', description: '0-100 readiness of THIS area for the stated target' },

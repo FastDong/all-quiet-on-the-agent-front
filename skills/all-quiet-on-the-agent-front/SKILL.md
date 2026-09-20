@@ -1,11 +1,11 @@
 ---
-name: code-audit
+name: all-quiet-on-the-agent-front
 description: Project-agnostic multi-agent release-readiness audit — N read-only code lenses verify the latest fixes first, hunt for defects with concrete failing inputs, and every blocker/major claim is adversarially refuted before it counts. Use when the user asks to evaluate/audit/review code readiness AND explicitly allows multi-agent work in the same message ("멀티에이전틱", "에이전트 써도 됨", "use agents"). Never run it unasked.
 ---
 
-# code-audit
+# All Quiet on the Agent Front (에이전트 이상없음)
 
-A saved workflow (`~/.claude/workflows/code-audit.js`) plus a summarizer. Lenses are passed
+A saved workflow (`~/.claude/workflows/all-quiet-on-the-agent-front.js`) plus a summarizer. Lenses are passed
 in, so it works for any repo; scores stay comparable run to run as long as the lens list is
 kept stable for that project.
 
@@ -36,10 +36,10 @@ come from `diff` scope, `effort: 'medium'`, and a small `maxClaims`.
 2. Write `fixes` from the last commit message(s), one line per lens.
 3. Launch:
    ```
-   Workflow({ scriptPath: '<home>/.claude/workflows/code-audit.js', args: { root, project, guide, lenses, fixes, accepted, since, scope, maxClaims, effort } })
+   Workflow({ scriptPath: '<home>/.claude/workflows/all-quiet-on-the-agent-front.js', args: { root, project, guide, lenses, fixes, accepted, since, scope, maxClaims, effort } })
    ```
    Tell the user it is running with the token estimate; wait for the notification.
-4. `python <home>/.claude/skills/code-audit/summarize.py <task .output file>`
+4. `python <home>/.claude/skills/all-quiet-on-the-agent-front/summarize.py <task .output file>`
 5. Report short, in the user's language: mean score, per-lens table (with previous scores
    if known), fixes judged wrong (own them explicitly), confirmed majors one line each,
    minors count, rejected count, actual token usage.
