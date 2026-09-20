@@ -5,7 +5,9 @@ description: Project-agnostic multi-agent release-readiness audit — N read-onl
 
 # All Quiet on the Agent Front (에이전트 이상없음)
 
-A saved workflow (`~/.claude/workflows/all-quiet-on-the-agent-front.js`) plus a summarizer. Lenses are passed
+A saved workflow (`<repo>/.claude/workflows/all-quiet-on-the-agent-front.js` — the Workflow tool only
+accepts script paths under the working directory, so copy it into each repo; the canonical copy is
+`~/.claude/workflows/all-quiet-on-the-agent-front.js`) plus a summarizer. Lenses are passed
 in, so it works for any repo; scores stay comparable run to run as long as the lens list is
 kept stable for that project.
 
@@ -36,7 +38,7 @@ come from `diff` scope, `effort: 'medium'`, and a small `maxClaims`.
 2. Write `fixes` from the last commit message(s), one line per lens.
 3. Launch:
    ```
-   Workflow({ scriptPath: '<home>/.claude/workflows/all-quiet-on-the-agent-front.js', args: { root, project, guide, lenses, fixes, accepted, since, scope, maxClaims, effort } })
+   Workflow({ scriptPath: '<repo>/.claude/workflows/all-quiet-on-the-agent-front.js', args: { root, project, guide, lenses, fixes, accepted, since, scope, maxClaims, effort } })
    ```
    Tell the user it is running with the token estimate; wait for the notification.
 4. `python <home>/.claude/skills/all-quiet-on-the-agent-front/summarize.py <task .output file>`

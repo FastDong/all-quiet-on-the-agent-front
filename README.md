@@ -24,11 +24,13 @@ cheaper than ad-hoc agent fan-outs.
 
 ```
 cp -r skills/all-quiet-on-the-agent-front   ~/.claude/skills/all-quiet-on-the-agent-front
-cp    workflows/all-quiet-on-the-agent-front.js ~/.claude/workflows/all-quiet-on-the-agent-front.js
+# in each repo you audit (the Workflow tool only accepts script paths under the working directory):
+cp    workflows/all-quiet-on-the-agent-front.js <repo>/.claude/workflows/all-quiet-on-the-agent-front.js
 ```
 
-Claude Code picks up `~/.claude/skills/*/SKILL.md` at session start. The workflow is launched
-through the `Workflow` tool with `scriptPath` (see below). Requires a Claude Code build with the
+Claude Code picks up `~/.claude/skills/*/SKILL.md` at session start. The workflow script must
+live **inside the repository** (`.claude/workflows/`), because the `Workflow` tool refuses
+`scriptPath` values outside the working directory. Requires a Claude Code build with the
 Workflow tool (multi-agent orchestration).
 
 ## Usage
@@ -45,7 +47,7 @@ Claude then:
 2. Writes one line per lens describing what changed since the last audit (`fixes`).
 3. Launches:
    ```js
-   Workflow({ scriptPath: '~/.claude/workflows/all-quiet-on-the-agent-front.js', args: {
+   Workflow({ scriptPath: '<repo>/.claude/workflows/all-quiet-on-the-agent-front.js', args: {
      root: '/abs/path/to/repo',
      project: 'one paragraph: stack, what ships, release target',
      guide: 'CLAUDE.md',              // read first, or ''
